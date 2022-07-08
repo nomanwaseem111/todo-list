@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://kit.fontawesome.com/bf520e6492.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+    <div class="main">
+        <div class="main2">
+            <input type="text" id="item" autofocus placeholder="Write something here...">
+            <ul id="todo-box">
+                <li>
+                    Create a Video                     
+                    
+
+                    <i class="fas fa-times"></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+</body>
+
+
+<script>
+
+
+const item = document.querySelector('#item');
+const toDoBox = document.querySelector('#todo-box');
+
+item.addEventListener(
+    "keyup",
+    function(event){
+        if(event.key == "Enter"){
+            addTodo(this.value);
+            this.value = ""
+        }
+    }
+    )
+
+    const addTodo = (item) => {
+        const listItem = document.createElement('li')
+        listItem.innerHTML = `
+${item}                    
+
+                    <i class="fas fa-times"></i>
+        `;
+
+        listItem.addEventListener(
+            "click",
+            function (){
+                this.classList.toggle("done")
+            }
+        )
+
+   listItem.querySelector('i').addEventListener(
+    "click",
+    function(){
+        listItem.remove();
+    }
+   )
+
+        toDoBox.appendChild(listItem)
+    }
+
+</script>
+
+</html>
